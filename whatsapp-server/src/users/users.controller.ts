@@ -7,7 +7,7 @@ export class UsersController {
 
     constructor(private userService: UsersService) { }
 
-    @Get('/')
+    @Get('')
     findAll(): User[] {
         return this.userService.GetAllUsers();
     }
