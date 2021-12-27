@@ -2,11 +2,11 @@ import { User } from "./user";
 
 export class UsersService {
     private users: User[] = [
-        new User('atitamar', '12345'),
-        new User('coemanuel', '54321'),
-        new User('brigal', '67890'),
-        new User('haosher', '09876'),
-        new User('isyarin', '11111'),
+        {"username": "atitamar", "password": "12345"},
+        {"username": "coemanuel", "password": "54321"},
+        {"username": "brigal", "password": "67890"},
+        {"username": "haosher", "password": "09876"},
+        {"username": "isyarin", "password": "11111"},
     ];
 
     // TODO refactor without prewritten users
@@ -16,15 +16,15 @@ export class UsersService {
         return this.users;
     }
 
-    public AddUser(username: string, password: string): void {
-        this.users.push(new User(username, password));
+    public AddUser(user: User): void {
+        this.users.push(user);
     }
 
     public UserExists(username: string, password: string): boolean {
         let toReturn: boolean = false;
 
         this.users.forEach((user: User): void => {
-            if (user.GetUsername() == username && user.GetPassword() == password) {
+            if (user.username == username && user.password == password) {
                 toReturn = true;
             }
         })

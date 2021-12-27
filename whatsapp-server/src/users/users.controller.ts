@@ -1,8 +1,8 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { User } from "./user";
 import { UsersService } from "./users.service";
 
-@Controller('users')
+@Controller('/users')
 export class UsersController {
 
     constructor(private userService: UsersService) { }
@@ -15,5 +15,11 @@ export class UsersController {
     @Get('/user/:username/:password')
     findByUsername(@Param('username') username: string, @Param('password') password): boolean {
         return this.userService.UserExists(username, password);
+    }
+
+    @Post('/add')
+    addNewUser(@Body() body): void {
+        console.log(123);
+        this.userService.AddUser(body);
     }
 }
