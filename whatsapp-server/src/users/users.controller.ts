@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { User } from "./user";
 import { UsersService } from "./users.service";
 
-@Controller('users')
+@Controller('/users')
 export class UsersController {
 
     constructor(private userService: UsersService) { }
@@ -18,8 +18,8 @@ export class UsersController {
     }
 
     @Post('/add')
-    addNewUser(@Body() body: User): void {
+    addNewUser(@Body() body): void {
         console.log(123);
-        this.userService.AddUser(body.GetUsername(), body.GetPassword());
+        this.userService.AddUser(body);
     }
 }
