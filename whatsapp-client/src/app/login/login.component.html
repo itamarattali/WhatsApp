@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="card align-items-center justify-content-center">
+            <img src="../../assets/images/WhatsappLogo.png" width="100" height="auto">
+            <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
+                <input formControlName="username" 
+                type="text" 
+                placeholder="Username"
+                class="input-components">
+                <input formControlName="password" 
+                type="password" 
+                placeholder="Password"
+                class="input-components">
+                <button type="submit" class="input-components">Login</button>
+            </form>
+            <p id="signInText">Don't have an account?</p>
+            <p id="blueText">sign in</p>
+            <p id="errorMessage" [hidden]="!this.inputInvalid">Username / Password do not match, please try again</p>
+        </div>
+    </div>
+</div>

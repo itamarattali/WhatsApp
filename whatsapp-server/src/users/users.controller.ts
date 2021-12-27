@@ -12,8 +12,8 @@ export class UsersController {
         return this.userService.GetAllUsers();
     }
 
-    @Get('/user/:id')
-    findById(@Param('id') id): User {
-        return this.userService.GetById(id);
+    @Get('/user/:username/:password')
+    findByUsername(@Param('username') username: string, @Param('password') password): boolean {
+        return this.userService.UserExists(username, password);
     }
 }
