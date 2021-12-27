@@ -36,6 +36,7 @@ export class SignInComponent implements OnInit {
       }
       else {
         this.userService.AddNewUser(formUsername, formPassword);
+        this.router.navigate(['../chat']);
       }
     })
   }
