@@ -39,4 +39,8 @@ export class LoginComponent implements OnInit {
       this.inputInvalid = true;
     }
   }
+
+  public SignIn() {
+    this.router.navigate(['../sign-in']);
+  }
 }
