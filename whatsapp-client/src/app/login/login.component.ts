@@ -29,15 +29,14 @@ export class LoginComponent implements OnInit {
     const formUsername = this.loginForm.get('username')?.value;
     const formPassword = this.loginForm.get('password')?.value;
 
-    this.userService.Validate(formUsername, formPassword);
-
-    if (this.userService.isValid) {
-      console.log('user is valid');
-    }
-    else {
-      console.log('user is invalid');
-      this.inputInvalid = true;
-    }
+    this.userService.Validate(formUsername, formPassword).subscribe((isValid: boolean) => {
+      if (isValid) {
+        this.router.navigate(['../chat'])
+      }
+      else {
+        this.inputInvalid = true;
+      }
+    })
   }
 
   public SignIn() {

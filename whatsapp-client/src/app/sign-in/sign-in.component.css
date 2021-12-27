@@ -61,3 +61,9 @@ button:focus {
     text-decoration: underline;
     cursor: pointer;
 }
+
+#errorMessage {
+    margin-top: -13px;
+    color: red;
+    font-size: 12px;
+}

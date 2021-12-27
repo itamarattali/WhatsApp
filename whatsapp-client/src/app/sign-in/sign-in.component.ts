@@ -10,6 +10,8 @@ import { UserService } from '../services/user.service';
 })
 export class SignInComponent implements OnInit {
 
+  userExists: boolean = false;
+
   signInForm = this.formBuilder.group({
     username: '',
     password: '',
@@ -27,7 +29,14 @@ export class SignInComponent implements OnInit {
     const formUsername = this.signInForm.get('username')?.value;
     const formPassword = this.signInForm.get('password')?.value;
 
-    this.userService.AddNewUser(formUsername, formPassword);
+    this.userService.Validate(formUsername, formPassword).subscribe((isValid) => {
+      if (isValid) {
+        this.userExists = true;
+      }
+      else {
+        this.userService.AddNewUser(formUsername, formPassword);
+      }
+    })
   }
 
   public LogIn() {
