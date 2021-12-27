@@ -9,9 +9,6 @@ export class UsersService {
         {"username": "isyarin", "password": "11111"},
     ];
 
-    // TODO refactor without prewritten users
-    private nextUserId = 5;
-
     public GetAllUsers(): User[] {
         return this.users;
     }
