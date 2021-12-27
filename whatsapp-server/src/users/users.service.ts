@@ -20,19 +20,14 @@ export class UsersService {
         this.users.push(new User(username, password));
     }
 
-    public GetByUsername(username: string): User {
-        const user: User = this.usernameExists(username);
-        console.log(user);
-        return user;
-    }
+    public UserExists(username: string, password: string): boolean {
+        let toReturn: boolean = false;
 
-    private usernameExists(username: string): User {
-        let foundUser: User = null;
         this.users.forEach((user: User): void => {
-            if (user.GetUsername() === username) {
-                foundUser = user;
+            if (user.GetUsername() == username && user.GetPassword() == password) {
+                toReturn = true;
             }
         })
-        return foundUser;
+        return toReturn;
     }
 }

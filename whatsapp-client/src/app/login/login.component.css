@@ -47,7 +47,23 @@ button:focus {
 }
 
 #errorMessage {
-    margin-top: 7px;
+    margin-top: -13px;
     color: red;
     font-size: 12px;
+}
+
+#signInText {
+    margin-top: 7px;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+#blueText {
+    font-size: 12px;
+    color: blue;
+}
+
+#blueText:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

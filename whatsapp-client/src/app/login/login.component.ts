@@ -25,18 +25,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public OnSubmit(): void {
+  public async OnSubmit(): Promise<void> {
     const formUsername = this.loginForm.get('username')?.value;
     const formPassword = this.loginForm.get('password')?.value;
 
     this.userService.Validate(formUsername, formPassword);
-    
-    if (this.userService.user.GetPassword() === formPassword) {
-      // User is valid
+
+    if (this.userService.isValid) {
+      console.log('user is valid');
     }
     else {
+      console.log('user is invalid');
       this.inputInvalid = true;
-      this.loginForm.reset();
     }
   }
 }
