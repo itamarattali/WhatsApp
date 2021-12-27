@@ -32,6 +32,7 @@ export class SignInComponent implements OnInit {
     this.userService.Validate(formUsername, formPassword).subscribe((isValid) => {
       if (isValid) {
         this.userExists = true;
+        this.signInForm.reset();
       }
       else {
         this.userService.AddNewUser(formUsername, formPassword);

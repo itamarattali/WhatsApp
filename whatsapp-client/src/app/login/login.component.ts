@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       }
       else {
         this.inputInvalid = true;
+        this.loginForm.reset();
       }
     })
   }

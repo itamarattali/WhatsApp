@@ -1,6 +1,6 @@
 .container-fluid {
     background-color: whitesmoke;
-    height: 100vh;
+    height: 90vh;
 }
 
 .card {
@@ -8,7 +8,7 @@
     border-color: lightgrey;
     background-color: lightgrey;
     border-radius: 5px;
-}
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
 
 input {
     margin-top: 3%;
