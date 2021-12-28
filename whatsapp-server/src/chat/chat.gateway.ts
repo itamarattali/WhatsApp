@@ -1,18 +1,23 @@
-import { OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
+import { OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
+import { Server } from 'http';
+import { Message } from 'src/interfaces/message';
 
-@WebSocketGateway({cors: true})
-export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect{
+@WebSocketGateway({ cors: true })
+export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
+
+  @WebSocketServer()
+  server: Server
 
   handleConnection() {
-    console.log('connected');
+    console.log("connected");
   }
 
   handleDisconnect() {
-      console.log('disconnected');
+      console.log("disconnected")
   }
 
   @SubscribeMessage('sendMessage')
-  handleMessage(client: any, payload: any): string {
-    return 'Hello world!';
+  handleMessage(message: Message) {    
+    this.server.emit('newMessage', message);
   }
 }
