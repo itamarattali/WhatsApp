@@ -8,14 +8,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { HeaderComponent } from './header/header.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatNavbarComponent } from './chat-navbar/chat-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignInComponent,
-    HeaderComponent,
+    ChatComponent,
+    ChatNavbarComponent,
   ],
   imports: [
     BrowserModule,

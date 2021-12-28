@@ -1,0 +1,97 @@
+.container-fluid {
+    border-right-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+    height: 100vh;
+    background-color: whitesmoke;
+}
+
+.row {
+    margin-left: -14%;
+    width: 123%;
+    height: 40px;
+}
+
+.new-chat-icon {
+    margin-top: -20px;
+    margin-left: 270px;
+    width: 30px;
+    border-radius: 40%;
+}
+
+.new-chat-icon:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.my-tooltip span {
+    opacity: 0;
+    position: absolute;
+    left: 9px;
+    margin: 1px;
+    margin-left: 245px;
+    background-color: white;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    font-size: 12px;
+}
+
+.my-tooltip:hover span {
+    opacity: 1;
+    transition-delay: 0.5s;
+    display: block;
+}
+
+.tooltip-text {
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#topRow {
+    border-bottom: 1px lightgray solid;
+    height: 30px !important;
+}
+
+.chats {
+    background-color: white;
+    border-bottom: 1px lightgray solid;
+    height: 70px;
+}
+
+.profile-picture {
+    margin-top: 5px;
+    width: 60px;
+    margin-left: -5px;
+    border-radius: 50%;
+}
+
+.username {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+.last-message {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 2px;
+    color: grey;
+}
+
+.last-message-time {
+    font-size: 12px;
+    margin-top: 13px;
+}
+
+.dot {
+    margin-top: 3px;
+    margin-left: 4px;
+    width: 20px;
+    height: 20px;
+    background-color: darkcyan;
+    border-radius: 50%;
+    display: inline-block;
+  }
