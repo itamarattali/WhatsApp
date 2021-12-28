@@ -19,7 +19,6 @@ export class UsersController {
 
     @Post('/add')
     addNewUser(@Body() body): void {
-        console.log(123);
         this.userService.AddUser(body);
     }
 }
