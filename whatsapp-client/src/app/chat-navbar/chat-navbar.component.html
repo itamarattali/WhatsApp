@@ -1,5 +1,5 @@
 <div class="container-fluid">.
-    <div class="row" id="topRow">    
+    <div class="row" id="topRow">
         <div class="my-tooltip" (click)="this.AddNewChat()">
             <img class="new-chat-icon" src="../../assets/images/NewChat.png"/>
             <span class="tooltip-text">New Chat</span>
@@ -27,13 +27,16 @@
         </div>
     </div>
     <div [hidden]="!this.addNewChat">
-        <div class="row">
-            <div class="col-2 search-tooltip">
-                <img id="searchIcon" src="../../assets/images/SearchIcon.png" (click)="this.OnSearch(input)">
-                <span class="tooltip-text">Search</span>
+        <div class="row" id="searchRow">
+            <div class="col-1">
+                <img id="backIcon" src="../../assets/images/BackIcon.png" (click)="this.OnBack()">
             </div>
             <div class="col-10">
                 <input placeholder="Find Username" id="searchBar" type="text" #input>
+            </div>
+            <div class="col-1 search-tooltip">
+                <img id="searchIcon" src="../../assets/images/SearchIcon.png" (click)="this.OnSearch(input)">
+                <span class="tooltip-text">Search</span>
             </div>
         </div>
         <div class="loader" [hidden]="!this.loading"></div>
@@ -44,7 +47,7 @@
                 </div>
                 <div class="col-8">
                     <div class="username">
-                        <span>Username</span>
+                        <span>{{this.userFound.username}}</span>
                     </div>
                 </div>
                 <div class="col-2">

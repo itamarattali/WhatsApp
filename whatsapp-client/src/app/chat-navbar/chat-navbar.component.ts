@@ -23,9 +23,16 @@ export class ChatNavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   AddNewChat(): void {
-    this.userNotFound = true;
     this.searchNotFailed = true;
     this.addNewChat = true;
+  }
+
+  OnBack(): void {
+    this.addNewChat = false;
+  }
+
+  GetCurrentUsername(): string {
+    return this.userService.user.username;
   }
 
   OnSearch(input: HTMLInputElement) {
