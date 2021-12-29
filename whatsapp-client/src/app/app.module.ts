@@ -10,6 +10,7 @@ import { UserService } from './services/user.service';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatNavbarComponent } from './chat-navbar/chat-navbar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ChatNavbarComponent } from './chat-navbar/chat-navbar.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

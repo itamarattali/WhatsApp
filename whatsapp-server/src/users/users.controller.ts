@@ -13,8 +13,14 @@ export class UsersController {
     }
 
     @Get('/user/:username/:password')
-    findByUsername(@Param('username') username: string, @Param('password') password): boolean {
+    findByUsernameAndPassword(@Param('username') username: string, 
+    @Param('password') password): boolean {
         return this.userService.UserExists(username, password);
+    }
+
+    @Get('/user/:username')
+    findByUsername(@Param('username') username: string): User {
+        return this.userService.GetUserByUsername(username);
     }
 
     @Post('/add')

@@ -17,6 +17,15 @@ export class UsersService {
         this.users.push(user);
     }
 
+    public GetUserByUsername(username: string): User {
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].username == username) {
+                return this.users[i];
+            }
+        }
+        return null;
+    }
+
     public UserExists(username: string, password: string): boolean {
         let toReturn: boolean = false;
 

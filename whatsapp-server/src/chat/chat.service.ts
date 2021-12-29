@@ -9,8 +9,8 @@ export class ChatService {
 
     constructor(private usersService: UsersService) { }
 
-    public AddNewChat(sender: string, reciever: string): void {
-        const newChat: Chat = {messageList: [], usersWithAccess: [sender, reciever]};
+    public AddNewChat(firstUser: string, secondUser: string): void {
+        const newChat: Chat = {messageList: [], usersWithAccess: [firstUser, secondUser]};
         this.allChats.push(newChat);
     }
 
@@ -35,7 +35,6 @@ export class ChatService {
             this.allChats[i].usersWithAccess.includes(to)) {
                 return i;
             }
-            return -1;
-        }
+''        }
     }
 }

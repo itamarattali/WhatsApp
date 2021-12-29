@@ -88,10 +88,79 @@
 
 .dot {
     margin-top: 3px;
-    margin-left: 4px;
-    width: 20px;
-    height: 20px;
+    margin-left: 5px;
+    width: 17px;
+    height: 17px;
     background-color: darkcyan;
     border-radius: 50%;
     display: inline-block;
-  }
+}
+
+#searchBar {
+    margin-top: 5px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+#searchBar:focus {
+    border-bottom: 2px grey solid;
+}
+
+#searchIcon {
+    margin-top: 9px;
+    margin-left: 10px;
+    width: 15px;
+}
+
+#searchIcon:hover {
+    cursor: pointer;
+}
+
+.search-tooltip span {
+    opacity: 0;
+    position: absolute;
+    left: 9px;
+    margin-top: 15px;
+    background-color: white;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    font-size: 12px;
+}
+
+.search-tooltip:hover span {
+    opacity: 1;
+    transition-delay: 0.5s;
+    display: block;
+}
+
+.loader {
+    margin-top: 5px;
+    margin-left: 105px;
+    border: 8px solid whitesmoke;
+    border-top: 8px solid darkcyan;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.user-not-found {
+    font-size: 12px;
+    color: red;
+}
+
+#searchDot {
+    margin-top: 28px;
+}
+
+#searchRow {
+    border-top: solid 1px lightgrey;
+}
