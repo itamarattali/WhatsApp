@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
 import { Chat } from '../interfaces/chat';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-chat-navbar',
@@ -11,8 +12,7 @@ import { Chat } from '../interfaces/chat';
 })
 export class ChatNavbarComponent implements OnInit {
 
-  chats: Chat[] = []
-  chatSelected: Chat = {usersWithAccess: [], messageList: []};
+  @Input() chats: Chat[] = []
   
   searchNotFailed: boolean = true;
   userNotFound: boolean = true;
@@ -26,11 +26,10 @@ export class ChatNavbarComponent implements OnInit {
   constructor(private http: HttpClient, 
     private userService: UserService) {}
 
-  ngOnInit(): void {
-    // Fetch all chats that include current user
-  }
+  ngOnInit(): void { }
 
-  AddNewChat(): void {
+  AddNewChat(firstUser: string, secondUser: string): void {
+    this.http.get(`${this.BASE_URL}/chats/add/${firstUser}/${secondUser}`)
     this.searchNotFailed = true;
     this.addNewChat = true;
   }

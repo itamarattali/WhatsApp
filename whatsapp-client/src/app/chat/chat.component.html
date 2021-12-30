@@ -1,8 +1,7 @@
 <div class="container-fluid">
-    
     <div class="row">
         <div class="col-3">
-            <app-chat-navbar></app-chat-navbar>
+            <app-chat-navbar [chats]="this.chats"></app-chat-navbar>
         </div>
         <div class="col-9 container-fluid" id="chatArea">
             <div class="message-area container-fluid">

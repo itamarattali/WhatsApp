@@ -2,9 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { Chat } from 'src/interfaces/chat';
 import { Message } from 'src/interfaces/message';
 import { UsersService } from 'src/users/users.service';
+import { WebSocketServer } from '@nestjs/websockets';
 
 @Injectable()
 export class ChatService {
+
     private allChats: Chat[];
 
     constructor(private usersService: UsersService) { }
@@ -14,7 +16,7 @@ export class ChatService {
         this.allChats.push(newChat);
     }
 
-    public AllChatsContainingUser(username: string): Chat[] {
+    public GetAllChatsContainingUser(username: string): Chat[] {
         const chatList: Chat[] = [];
         this.allChats.forEach((chat: Chat) => {
             if (chat.usersWithAccess.includes(username)) {
@@ -35,6 +37,6 @@ export class ChatService {
             this.allChats[i].usersWithAccess.includes(to)) {
                 return i;
             }
-''        }
+        }
     }
 }
