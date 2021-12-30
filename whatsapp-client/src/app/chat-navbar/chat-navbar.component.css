@@ -21,6 +21,7 @@
 
 .new-chat-icon:hover {
     cursor: pointer;
+    background-color: rgba(0, 139, 139, 0.1);
 }
 
 .my-tooltip span {
@@ -60,6 +61,7 @@
     background-color: white;
     border-bottom: 1px lightgray solid;
     height: 70px;
+    cursor: pointer;
 }
 
 .profile-picture {
@@ -100,7 +102,10 @@
 #searchBar {
     margin-top: 5px;
     width: 100%;
-    border: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid lightgrey;
     outline: none;
     background-color: transparent;
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { User } from '../user';
+import { User } from '../interfaces/user';
+import { Chat } from '../interfaces/chat';
 
 @Component({
   selector: 'app-chat-navbar',
@@ -9,18 +10,25 @@ import { User } from '../user';
   styleUrls: ['./chat-navbar.component.css']
 })
 export class ChatNavbarComponent implements OnInit {
+
+  chats: Chat[] = []
+  chatSelected: Chat = {usersWithAccess: [], messageList: []};
   
   searchNotFailed: boolean = true;
   userNotFound: boolean = true;
   loading: boolean = false;
   addNewChat: boolean = false;
+
   userFound: User = {username: '', password: ''};
+
   BASE_URL: string = "http://localhost:3000";
 
   constructor(private http: HttpClient, 
     private userService: UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Fetch all chats that include current user
+  }
 
   AddNewChat(): void {
     this.searchNotFailed = true;

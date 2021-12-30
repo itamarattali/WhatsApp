@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../user';
+import { User } from '../interfaces/user';
 import { Observable, timeout } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable, timeout } from 'rxjs';
 export class UserService {
 
   BASE_URL = 'http://localhost:3000';
-  user: User = new User('', '');
+  user: User = {username: '', password: ''};
 
   constructor(private http: HttpClient) { }
   
@@ -19,7 +19,7 @@ export class UserService {
   }
   
   public AddNewUser(username: string, password: string): void {
-    const body = new User(username, password);
+    const body: User = {username: username, password: password};
     
     this.user.username = username;
     this.user.password = password;

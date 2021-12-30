@@ -4,8 +4,25 @@
         <div class="col-3">
             <app-chat-navbar></app-chat-navbar>
         </div>
-        <div class="col-9" id="chatArea">
-
+        <div class="col-9 container-fluid" id="chatArea">
+            <div class="message-area container-fluid">
+                <div class="row chat-top-row">
+                    
+                </div>
+            </div>
+            <div [formGroup]="inputMessage" class="container-fluid input-area">
+                <div class="row">
+                    <div class="col-11">
+                        <input formControlName="message" 
+                        type="text" 
+                        placeholder="Type a message" 
+                        class="input-message">
+                    </div>
+                    <div class="col-1">
+                        <img src="../../assets/images/SendIcon.png" id="sendIcon">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

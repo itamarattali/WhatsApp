@@ -3,9 +3,51 @@
     background-color: white;
 }
 
-#chatArea {
+.message-area {
+    height: 90vh;
     background-image:url('../../assets/images/WhatsappLogo.png');
-    opacity: 0.3;
     background-repeat: no-repeat;
     background-position: center 0%;
+    opacity: 0.3;
+}
+
+.input-area {
+    margin-left: -2.4%;
+    height: 10vh;
+    background-color: whitesmoke;
+    border-top: 1px solid lightgrey;
+    width: 103.5%;
+}
+
+.input-message {
+    background: transparent;
+    outline: none;
+    width: 105%;
+    margin-top: 10px;
+    height: 35px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px lightgrey solid;
+}
+
+.input-message:focus {
+    border-bottom-color: grey;
+}
+
+#sendIcon {
+    border-radius: 50%;
+    margin-left: 65%;
+    margin-top: 15px;
+    width: 25px;
+}
+
+#sendIcon:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.chat-top-row {
+    background-color: rgba(darkcyan) !important;
+    height: 40px;
 }
