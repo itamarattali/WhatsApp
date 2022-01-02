@@ -31,9 +31,7 @@ export class ChatNavbarComponent implements OnInit {
 
   constructor(private http: HttpClient, 
     private userService: UserService,
-    private formBuilder: FormBuilder) {
-      console.log('navbar constructor was called');
-    }
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void { }
 
@@ -71,9 +69,8 @@ export class ChatNavbarComponent implements OnInit {
   public OnAddChat(): void {
     const recipient: string = this.searchUser.get('username')?.value;
     const myUsername: string = this.userService.user.username;
-    this.chats.unshift({messageList: [], usersWithAccess: [myUsername, recipient]})
-    this.http.get(`${this.BASE_URL}/add/${this.searchUser.get('username')?.value}
-    /${this.userService.user.username}`);
+    this.chats.unshift({messageList: [], usersWithAccess: [myUsername, recipient]});    
+    this.http.get(`${this.BASE_URL}/chat/add/${myUsername}/${recipient}`).subscribe(() => {});
   }
 
   public GetRecipient(chat: Chat): string {

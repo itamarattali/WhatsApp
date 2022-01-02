@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.http.get(`${this.BASE_URL}/chats/${this.userService.user.username}`).subscribe((data) => {
+    this.http.get(`${this.BASE_URL}/chat/${this.userService.user.username}`).subscribe((data) => {
       this.chats = data as Chat[];
     })
     

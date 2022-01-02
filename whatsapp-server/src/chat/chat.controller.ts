@@ -1,15 +1,13 @@
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { Chat } from 'src/interfaces/chat';
-import { Message } from 'src/interfaces/message';
-import { Server } from 'http';
 
 @Controller('chat')
 export class ChatController {
 
     constructor(private chatService: ChatService) { }
 
-    @Get(':username')
+    @Get('/:username')
     FindAllChatsContainingUser(@Param('username') username: string): Chat[] {
         return this.chatService.GetAllChatsContainingUser(username);
     }
