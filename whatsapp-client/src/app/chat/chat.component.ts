@@ -24,7 +24,9 @@ export class ChatComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, 
     private userService: UserService,
-    private http: HttpClient) { }
+    private http: HttpClient) {
+      console.log(28);
+    }
 
   ngOnInit(): void {
     this.http.get(`${this.BASE_URL}/chats/${this.userService.user.username}`).subscribe((data) => {
@@ -34,7 +36,7 @@ export class ChatComponent implements OnInit {
     this.socket.on('newMessage', (message: Message) => {
       if (message.to == this.userService.user.username) {
         this.UpdateChatsArrayOnNewMessage(message);
-      }
+      }      
     });
   }
   
@@ -46,5 +48,9 @@ export class ChatComponent implements OnInit {
         this.chats.unshift(this.chats.splice(i, 1)[0]);
       }
     }
+  }
+
+  public OnSendMessage(message: Message): void {
+    this.socket.emit('sendMessage', message);
   }
 }

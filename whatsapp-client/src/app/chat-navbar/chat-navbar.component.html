@@ -1,6 +1,6 @@
 <div class="container-fluid">.
     <div class="row" id="topRow">
-        <div class="my-tooltip" (click)="this.AddNewChat()">
+        <div class="my-tooltip" (click)="this.AddNewChatNavbar()">
             <img class="new-chat-icon" src="../../assets/images/NewChat.png"/>
             <span class="tooltip-text">New Chat</span>
         </div>
@@ -31,17 +31,17 @@
             <div class="col-1">
                 <img id="backIcon" src="../../assets/images/BackIcon.png" (click)="this.OnBack()">
             </div>
-            <div class="col-10">
-                <input placeholder="Find Username" id="searchBar" type="text" #input>
+            <div class="col-10" [formGroup]="searchUser">
+                <input placeholder="Find Username" id="searchBar" type="text" formGroupName="username">
             </div>
             <div class="col-1 search-tooltip">
-                <img id="searchIcon" src="../../assets/images/SearchIcon.png" (click)="this.OnSearch(input)">
+                <img id="searchIcon" src="../../assets/images/SearchIcon.png" (click)="this.OnSearch()">
                 <span class="tooltip-text">Search</span>
             </div>
         </div>
         <div class="loader" [hidden]="!this.loading"></div>
         <div class="user-found" [hidden]="this.userNotFound || this.loading">
-            <div class="row chats" id="searchRow">
+            <div class="row chats" id="searchRow" (click)="this.OnAddChat()">
                 <div class="col-2">
                     <img class="profile-picture" src="../../assets/images/DefaultProfilePic.jpg">
                 </div>

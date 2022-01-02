@@ -4,6 +4,8 @@ import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
 import { Chat } from '../interfaces/chat';
 import { Input } from '@angular/core';
+import { Socket } from 'socket.io-client';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-chat-navbar',
@@ -12,7 +14,7 @@ import { Input } from '@angular/core';
 })
 export class ChatNavbarComponent implements OnInit {
 
-  @Input() chats: Chat[] = []
+  @Input() chats: Chat[] = [];
   
   searchNotFailed: boolean = true;
   userNotFound: boolean = true;
@@ -23,13 +25,20 @@ export class ChatNavbarComponent implements OnInit {
 
   BASE_URL: string = "http://localhost:3000";
 
+  searchUser = this.formBuilder.group({
+    username: '',
+  })
+
   constructor(private http: HttpClient, 
-    private userService: UserService) {}
+    private userService: UserService,
+    private socket: Socket,
+    private formBuilder: FormBuilder) {
+      console.log('navbar constructor was called');
+    }
 
   ngOnInit(): void { }
 
-  AddNewChat(firstUser: string, secondUser: string): void {
-    this.http.get(`${this.BASE_URL}/chats/add/${firstUser}/${secondUser}`)
+  AddNewChatNavbar(): void {
     this.searchNotFailed = true;
     this.addNewChat = true;
   }
@@ -42,9 +51,9 @@ export class ChatNavbarComponent implements OnInit {
     return this.userService.user.username;
   }
 
-  OnSearch(input: HTMLInputElement) {
+  OnSearch() {
     this.searchNotFailed = true;
-    this.http.get(`${this.BASE_URL}/users/user/${input.value}`).subscribe((data) => {
+    this.http.get(`${this.BASE_URL}/users/user/${this.searchUser.get('username')?.value}`).subscribe((data) => {
       this.loading = true;
       setTimeout(() => {
         if (data == null) {
@@ -58,5 +67,13 @@ export class ChatNavbarComponent implements OnInit {
         this.loading = false;
       }, 1000)
     })
+  }
+
+  public OnAddChat(): void {
+    const recipient: string = this.searchUser.get('username')?.value;
+    const myUsername: string = this.userService.user.username;
+    this.chats.unshift({messageList: [], usersWithAccess: [myUsername, recipient]})
+    this.http.get(`${this.BASE_URL}/add/${this.searchUser.get('username')?.value}
+    /${this.userService.user.username}`);
   }
 }

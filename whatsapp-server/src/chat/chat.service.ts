@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Chat } from 'src/interfaces/chat';
 import { Message } from 'src/interfaces/message';
 import { UsersService } from 'src/users/users.service';
-import { WebSocketServer } from '@nestjs/websockets';
 
 @Injectable()
 export class ChatService {

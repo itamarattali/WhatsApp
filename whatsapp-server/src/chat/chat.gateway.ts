@@ -18,9 +18,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   handleDisconnect(client: Message) {
       console.log("disconnected")
   }
-
-  // SOCKET EVENT SENDMESSAGE NOT CALLED IN THE CLIENT!
-  // his needs to be in the service
+  
   @SubscribeMessage('sendMessage')
   handleMessage(message: Message) {    
     this.chatService.AddMessageFromTo(message);
