@@ -32,7 +32,11 @@
                 <img id="backIcon" src="../../assets/images/BackIcon.png" (click)="this.OnBack()">
             </div>
             <div class="col-10" [formGroup]="searchUser">
-                <input placeholder="Find Username" id="searchBar" type="text" formControlName="username">
+                <input placeholder="Find Username" 
+                id="searchBar" 
+                type="text" 
+                autocomplete="off"
+                formControlName="username">
             </div>
             <div class="col-1 search-tooltip">
                 <img id="searchIcon" src="../../assets/images/SearchIcon.png" (click)="this.OnSearch()">
