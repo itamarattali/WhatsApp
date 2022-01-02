@@ -5,21 +5,21 @@
             <span class="tooltip-text">New Chat</span>
         </div>
     </div>
-    <div [hidden]="this.addNewChat" class="row chats">
+    <div [hidden]="this.addNewChat" class="row chats" *ngFor="let chat of chats">
         <div class="col-2">
             <img class="profile-picture" src="../../assets/images/DefaultProfilePic.jpg">
         </div>
         <div class="col-8">
             <div class="username">
-                <span>Username</span>
+                <span>{{this.GetRecipient(chat)}}</span>
             </div>
             <div class="last-message">
-                <span>last message</span>
+                <span>{{ this.GetLastMessage(chat) }}</span>
             </div>
         </div>
         <div class="col-2">
             <div class="last-message-time">
-                <span>00:00</span>
+                <span>{{ this.GetLastTime(chat) }}</span>
             </div>
             <div class="message-unread">
                 <span class="dot"></span>
@@ -32,7 +32,7 @@
                 <img id="backIcon" src="../../assets/images/BackIcon.png" (click)="this.OnBack()">
             </div>
             <div class="col-10" [formGroup]="searchUser">
-                <input placeholder="Find Username" id="searchBar" type="text" formGroupName="username">
+                <input placeholder="Find Username" id="searchBar" type="text" formControlName="username">
             </div>
             <div class="col-1 search-tooltip">
                 <img id="searchIcon" src="../../assets/images/SearchIcon.png" (click)="this.OnSearch()">

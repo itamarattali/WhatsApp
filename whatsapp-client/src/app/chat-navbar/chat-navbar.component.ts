@@ -31,7 +31,6 @@ export class ChatNavbarComponent implements OnInit {
 
   constructor(private http: HttpClient, 
     private userService: UserService,
-    private socket: Socket,
     private formBuilder: FormBuilder) {
       console.log('navbar constructor was called');
     }
@@ -75,5 +74,26 @@ export class ChatNavbarComponent implements OnInit {
     this.chats.unshift({messageList: [], usersWithAccess: [myUsername, recipient]})
     this.http.get(`${this.BASE_URL}/add/${this.searchUser.get('username')?.value}
     /${this.userService.user.username}`);
+  }
+
+  public GetRecipient(chat: Chat): string {
+    return this.userService.user.username == chat.usersWithAccess[0] ? 
+    chat.usersWithAccess[1] : chat.usersWithAccess[0];
+  }
+
+  public GetLastMessage(chat: Chat): string {
+    if (chat.messageList.length == 0) {
+      return '';
+    }
+    const from: string = chat.messageList[chat.messageList.length - 1].from;
+    const message: string = chat.messageList[chat.messageList.length - 1].text;
+    return `${from}: ${message}`;
+  }
+
+  public GetLastTime(chat: Chat): string {
+    if (chat.messageList.length == 0) {
+      return '';
+    }
+    return chat.messageList[chat.messageList.length - 1].time;
   }
 }
