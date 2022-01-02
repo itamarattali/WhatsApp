@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 
     this.userService.Validate(formUsername, formPassword).subscribe((isValid: boolean) => {
       if (isValid) {
-        console.log(34);
         this.userService.user.username = formUsername;
         this.userService.user.password = formPassword;
         this.router.navigate(['../chat']);

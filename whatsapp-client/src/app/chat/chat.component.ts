@@ -25,7 +25,6 @@ export class ChatComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
     private userService: UserService,
     private http: HttpClient) {
-      console.log(28);
     }
 
   ngOnInit(): void {

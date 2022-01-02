@@ -12,7 +12,6 @@ export class ChatService {
 
     public AddNewChat(firstUser: string, secondUser: string): void {
         const newChat: Chat = {messageList: [], usersWithAccess: [firstUser, secondUser]};
-        console.log(newChat);
         this.allChats.push(newChat);
     }
 
@@ -23,7 +22,6 @@ export class ChatService {
                 chatList.push(chat);
             }
         })
-        console.log(chatList);
         return chatList;
     }
 
