@@ -5,6 +5,7 @@ import { io, Socket } from 'socket.io-client';
 import { Message } from '../interfaces/message';
 import { UserService } from '../services/user.service';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-chat',
@@ -35,14 +36,13 @@ export class ChatComponent implements OnInit {
     })
     
     this.socket.on('newMessage', (message: Message) => {
-      console.log(message);
       if (message.to == this.userService.user.username) {
-        this.UpdateChatsArrayOnNewMessage(message);
+        this.updateChatsArrayOnNewMessage(message);
       }      
     });
   }
   
-  private UpdateChatsArrayOnNewMessage(message: Message): void {
+  private updateChatsArrayOnNewMessage(message: Message): void {
     for (let i = 0; i < this.chats.length; i++) {
       if (this.chats[i].usersWithAccess.includes(message.from) && 
       this.chats[i].usersWithAccess.includes(message.to)) {
@@ -52,7 +52,25 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  public OnSendMessage(message: Message): void {
+  private getCurrentTime(): string {
+    return moment().format('HH:mm').toString();
+  }
+
+  private getRecipientUsername(): string {
+    return this.chatSelected.usersWithAccess[0] == this.userService.user.username ? 
+    this.chatSelected.usersWithAccess[1] : this.chatSelected.usersWithAccess[0];
+  }
+
+  public OnSendMessage(): void {
+    const message: Message = {
+      from: this.userService.user.username,
+      to: this.getRecipientUsername(),
+      text: this.inputMessage.get('message')?.value,
+      time: this.getCurrentTime(),
+    }
+
+    this.chatSelected.messageList.push(message);
+    
     this.socket.emit('sendMessage', message);
   }
 

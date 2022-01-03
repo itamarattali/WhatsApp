@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { lastValueFrom } from 'rxjs';
 import { Chat } from 'src/interfaces/chat';
 import { Message } from 'src/interfaces/message';
 import { UsersService } from 'src/users/users.service';
@@ -27,7 +28,9 @@ export class ChatService {
 
     public AddMessageFromTo(message: Message): void {
         const chatIndex: number = this.findChatFromToIndex(message.from, message.to);
-        this.allChats[chatIndex].messageList.push(message);
+        if (chatIndex >= 0) {
+            this.allChats[chatIndex].messageList.push(message);
+        }
     }
 
     private findChatFromToIndex(from: string, to: string): number {
@@ -37,5 +40,6 @@ export class ChatService {
                 return i;
             }
         }
+        return -1;
     }
 }
