@@ -4,11 +4,12 @@
             <img src="../../assets/images/WhatsappLogo.png" width="100" height="auto">
             <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
                 <input formControlName="username" 
-                type="text" 
+                type="text"
                 placeholder="Username"
                 class="input-components">
                 <input formControlName="password" 
                 type="password" 
+                autocomplete="off"
                 placeholder="Password"
                 class="input-components">
                 <button type="submit" class="input-components">Login</button>

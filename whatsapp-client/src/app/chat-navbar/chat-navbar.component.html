@@ -1,52 +1,66 @@
 <div class="container-fluid">.
-    <div class="row" id="topRow">    
-        <div class="my-tooltip">
+    <div class="row" id="topRow">
+        <div class="my-tooltip" (click)="this.AddNewChatNavbar()">
             <img class="new-chat-icon" src="../../assets/images/NewChat.png"/>
             <span class="tooltip-text">New Chat</span>
         </div>
     </div>
-    <div class="row chats">
+    <div [hidden]="this.addNewChat" class="row chats" (click)="this.OnSelectChat(chat)" *ngFor="let chat of chats">
         <div class="col-2">
             <img class="profile-picture" src="../../assets/images/DefaultProfilePic.jpg">
         </div>
         <div class="col-8">
             <div class="username">
-                <span>Username</span>
-                <!-- Make text bold when message is unread -->
+                <span>{{this.GetRecipient(chat)}}</span>
             </div>
             <div class="last-message">
-                <span>last message</span>
+                <span>{{ this.GetLastMessage(chat) }}</span>
             </div>
         </div>
         <div class="col-2">
             <div class="last-message-time">
-                <span>00:00</span>
+                <span>{{ this.GetLastTime(chat) }}</span>
             </div>
             <div class="message-unread">
                 <span class="dot"></span>
             </div>
         </div>
     </div>
-    <div class="row chats">
-        <div class="col-2">
-            <img class="profile-picture" src="../../assets/images/DefaultProfilePic.jpg">
-        </div>
-        <div class="col-8">
-            <div class="username">
-                <span>Username</span>
-                <!-- Make text bold when message is unread -->
+    <div [hidden]="!this.addNewChat">
+        <div class="row" id="searchRow">
+            <div class="col-1">
+                <img id="backIcon" src="../../assets/images/BackIcon.png" (click)="this.OnBack()">
             </div>
-            <div class="last-message">
-                <span>last message</span>
+            <div class="col-10" [formGroup]="searchUser">
+                <input placeholder="Find Username" 
+                id="searchBar" 
+                type="text" 
+                autocomplete="off"
+                formControlName="username">
             </div>
-        </div>
-        <div class="col-2">
-            <div class="last-message-time">
-                <span>00:00</span>
-            </div>
-            <div class="message-unread">
-                <span class="dot"></span>
+            <div class="col-1 search-tooltip">
+                <img id="searchIcon" src="../../assets/images/SearchIcon.png" (click)="this.OnSearch()">
+                <span class="tooltip-text">Search</span>
             </div>
         </div>
+        <div class="loader" [hidden]="!this.loading"></div>
+        <div class="user-found" [hidden]="this.userNotFound || this.loading">
+            <div class="row chats" id="searchRow" (click)="this.OnAddChat()">
+                <div class="col-2">
+                    <img class="profile-picture" src="../../assets/images/DefaultProfilePic.jpg">
+                </div>
+                <div class="col-8">
+                    <div class="username">
+                        <span>{{this.userFound.username}}</span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="message-unread">
+                        <span id="searchDot" class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-not-found" [hidden]="this.searchNotFailed">user not found, please try again</div>
     </div>
 </div>
