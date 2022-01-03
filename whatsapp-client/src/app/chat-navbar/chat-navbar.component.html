@@ -5,7 +5,7 @@
             <span class="tooltip-text">New Chat</span>
         </div>
     </div>
-    <div [hidden]="this.addNewChat" class="row chats" *ngFor="let chat of chats">
+    <div [hidden]="this.addNewChat" class="row chats" (click)="this.OnSelectChat(chat)" *ngFor="let chat of chats">
         <div class="col-2">
             <img class="profile-picture" src="../../assets/images/DefaultProfilePic.jpg">
         </div>

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
 import { Chat } from '../interfaces/chat';
 import { Input } from '@angular/core';
-import { Socket } from 'socket.io-client';
 import { FormBuilder } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-chat-navbar',
@@ -15,7 +15,12 @@ import { FormBuilder } from '@angular/forms';
 export class ChatNavbarComponent implements OnInit {
 
   @Input() chats: Chat[] = [];
+  @Input() isChatOpen: boolean = false;
   
+  @Output() chatSelectedEvent: EventEmitter<Chat> = new EventEmitter();
+
+  chatSelected: Chat = {messageList: [], usersWithAccess: []};
+
   searchNotFailed: boolean = true;
   userNotFound: boolean = true;
   loading: boolean = false;
@@ -69,6 +74,7 @@ export class ChatNavbarComponent implements OnInit {
   public OnAddChat(): void {
     const recipient: string = this.searchUser.get('username')?.value;
     const myUsername: string = this.userService.user.username;
+    this.addNewChat = false;
     this.chats.unshift({messageList: [], usersWithAccess: [myUsername, recipient]});    
     this.http.get(`${this.BASE_URL}/chat/add/${myUsername}/${recipient}`).subscribe(() => {});
   }
@@ -92,5 +98,10 @@ export class ChatNavbarComponent implements OnInit {
       return '';
     }
     return chat.messageList[chat.messageList.length - 1].time;
+  }
+
+  public OnSelectChat(chat: Chat): void {
+    this.chatSelected = chat;
+    this.chatSelectedEvent.emit(chat);
   }
 }

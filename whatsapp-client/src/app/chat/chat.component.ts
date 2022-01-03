@@ -13,10 +13,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChatComponent implements OnInit {
 
+  @Output() isChatOpen: boolean = false;
   @Output() chats: Chat[] = [];
 
-  BASE_URL = 'http://localhost:3000'
+  BASE_URL: string = 'http://localhost:3000'
   socket: Socket = io(this.BASE_URL);
+  chatSelected: Chat = {messageList: [], usersWithAccess: []};
 
   inputMessage = this.formBuilder.group({
     message: '',
@@ -33,6 +35,7 @@ export class ChatComponent implements OnInit {
     })
     
     this.socket.on('newMessage', (message: Message) => {
+      console.log(message);
       if (message.to == this.userService.user.username) {
         this.UpdateChatsArrayOnNewMessage(message);
       }      
@@ -51,5 +54,10 @@ export class ChatComponent implements OnInit {
 
   public OnSendMessage(message: Message): void {
     this.socket.emit('sendMessage', message);
+  }
+
+  public OnChatSelected(chat: Chat): void {
+    this.chatSelected = chat;
+    this.isChatOpen = true;
   }
 }

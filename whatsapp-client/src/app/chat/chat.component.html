@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <app-chat-navbar [chats]="this.chats"></app-chat-navbar>
+            <app-chat-navbar [chats]="this.chats" 
+            [isChatOpen]="isChatOpen" (chatSelectedEvent)="this.OnChatSelected($event)"></app-chat-navbar>
         </div>
         <div class="col-9 container-fluid" id="chatArea">
             <div class="message-area container-fluid">
@@ -10,7 +11,7 @@
                 </div>
             </div>
             <div [formGroup]="inputMessage" class="container-fluid input-area">
-                <div class="row">
+                <div class="row" [hidden]="!this.isChatOpen">
                     <div class="col-11">
                         <input formControlName="message" 
                         type="text" 
