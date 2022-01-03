@@ -1,14 +1,11 @@
 .container-fluid {
     height: 100vh;
-    background-color: white;
 }
 
 .message-area {
     height: 90vh;
-    background-image:url('../../assets/images/WhatsappLogo.png');
     background-repeat: no-repeat;
     background-position: center 0%;
-    opacity: 0.3;
 }
 
 .input-area {
@@ -48,6 +45,38 @@
 }
 
 .chat-top-row {
-    background-color: rgba(darkcyan) !important;
-    height: 40px;
+    border-bottom: solid lightgrey 1px;
+    background-color: rgb(233, 240, 240);
+    width: 108.8%;
+    margin-left: -5%;
+    height: 54px;
+}
+
+.chat-username {
+    font-size: 28px;
+    margin-top: 5px;
+    font-weight: 500;
+    color: grey;
+}
+
+.my-message-bubble {
+    margin-top: 10px;
+    margin-left: -5px;
+    background-color: rgba(73, 170, 170, 0.5);
+    width: 40%;
+    height: 27px;
+    border-radius: 5%;
+}
+
+.recipient-message-bubble {
+    margin-top: 10px;
+    margin-left: 582px;
+    background-color: lightgrey;
+    width: 40%;
+    height: 27px;
+    border-radius: 5%;
+}
+
+.message-text {
+    font-size: 15px;
 }
